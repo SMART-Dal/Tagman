@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>NavigationBar</title>
+	<link href="/css/menu.css" rel="stylesheet">
+<!--	<link href="../static/css/menu.css" rel="stylesheet">-->
+
+</head>
+
+<body>
+
+	<nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{/}">Tagman - Dalhousie University</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a class="nav-link" th:href="@{/import-smells}">Import Smells File</a></li>
+
+				<li><a class="nav-link" th:href="@{/import-folder}">Import Folder</a></li>
+				<li><a class="nav-link" th:href="@{/getAllSamples}">List All Smells</a></li>
+			</ul>
+		</div>
+	</nav>
+
+</body>
+
+</html>
