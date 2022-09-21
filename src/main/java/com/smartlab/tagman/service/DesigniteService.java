@@ -44,6 +44,7 @@ public class DesigniteService {
 			String methodName) {
 		System.out.println("packageName" + packageName + " classname:" + className + " projectname: " + projectName
 				+ " methodName: " + methodName);
+		hibernateUtil.init();
 		SessionFactory sessionFactory = TagmanUtil.getSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();

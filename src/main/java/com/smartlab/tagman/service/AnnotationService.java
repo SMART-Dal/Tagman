@@ -110,11 +110,13 @@ public class AnnotationService {
 		SQLQuery queryForSample;
 		if (sampleStr.length() > 0) {
 			sampleStr.deleteCharAt(sampleStr.length() - 1);
-			queryForSample = session.createSQLQuery("select * from sample where id NOT IN  (" + sampleStr
-					+ ") AND sample_constraints = " + 1 + " AND is_class = " + getClass + " LIMIT 10");
+			queryForSample = session.createSQLQuery(
+					"select * from sample where id NOT IN  (" + sampleStr + ") AND sample_constraints = " + 1
+							+ " AND is_class = " + getClass + " AND has_smell = true LIMIT 10");
 
 		} else {
-			queryForSample = session.createSQLQuery("select * from sample WHERE is_class = " + getClass + " LIMIT 10");
+			queryForSample = session.createSQLQuery(
+					"select * from sample WHERE is_class = " + getClass + "  AND has_smell = true LIMIT 10");
 		}
 		queryForSample.addEntity(Sample.class);
 		results = queryForSample.list();
@@ -122,7 +124,7 @@ public class AnnotationService {
 		if (results.size() == 0) {
 			queryForSample = session.createSQLQuery(
 					"select * from sample where id NOT IN  (" + sampleStr + ") AND sample_constraints < "
-							+ Constants.sampleConstraintValue + " AND is_class = " + getClass + " LIMIT 10");
+							+ Constants.sampleConstraintValue + " AND is_class = " + getClass + " AND has_smell = true LIMIT 10");
 
 		}
 		queryForSample.addEntity(Sample.class);
@@ -147,8 +149,8 @@ public class AnnotationService {
 	public Annotation getAnnotationById(Long id) {
 		return annotationRepository.findById(id).orElse(null);
 	}
-	
-	public List<Annotation> getAllAnnotationsForUser(Long id){
+
+	public List<Annotation> getAllAnnotationsForUser(Long id) {
 		return annotationRepository.findByUserId(id);
 	}
 

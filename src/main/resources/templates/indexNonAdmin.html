@@ -425,8 +425,9 @@
 
 											<!--	<input type="hidden" name="sampleId" th:field="${id}" />-->
 											<div class="title" th:text="${filename}">spacy_demo.py</div>
-<pre class="language-java"><code><div th:text="${sample}" style="overflow-y:scroll;"></div>
-</code></pre>
+											<pre class="language-java"><code>
+													<div th:text="${sample}" style="overflow-y:scroll;"></div>
+												</code></pre>
 
 										</div>
 									</div>
@@ -458,7 +459,13 @@
 										<div class="chart-container">
 											<h4 class="text-left">
 											</h4>
-											<br> <input type="checkbox" name="EmptyCB" id="EmptyCB"
+
+											<th:block th:each="smell : ${smellsSent}">
+												<input type="checkbox" name="cers" th:value="${smell}" />
+												<label th:text="${smell}"></label>
+												<br>
+											</th:block>
+										<!--	<br> <input type="checkbox" name="EmptyCB" id="EmptyCB"
 												th:disabled="${isClass}"> <label for="replaceData">Empty
 												Catch Block</label>
 

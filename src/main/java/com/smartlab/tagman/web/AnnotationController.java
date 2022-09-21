@@ -51,10 +51,10 @@ public class AnnotationController {
 		// String content = Files.toString(new File("file.txt"), Charsets.UTF_8);
 		if (randomSample != null) {
 			String packageName = randomSample.getPathToFile().substring(
-					TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(), "/", 4),
-					TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(), "/", 5));
+					TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(), File.separator, 4),
+					TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(), File.separator, 5));
 			String className = randomSample.getPathToFile()
-					.substring(TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(), "/", 5));
+					.substring(TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(),File.separator, 5));
 			List<DesigniteCSV> desginEntry = designiteService.getdesigniteEntries(packageName, className,
 					randomSample.getProjectName());
 			if(desginEntry.size()>0)
@@ -71,7 +71,7 @@ public class AnnotationController {
 			model.addAttribute("inputObject", new NonAdminHomePageModel());
 			model.addAttribute("isEmpty", "0");
 			model.addAttribute("filename",
-					randomSample.getPathToFile().substring(randomSample.getPathToFile().lastIndexOf("/") + 1));
+					randomSample.getPathToFile().substring(randomSample.getPathToFile().lastIndexOf(File.separator) + 1));
 			System.out.println(TagmanUtil.readFile(randomSample.getPathToFile()).toString());
 		} else {
 			model.addAttribute("sample", "");

@@ -2,7 +2,8 @@ package com.smartlab.tagman.util;
 
 public class Constants {
 
-	public final static String tempFileLocation = "/Users/himesh/Documents/temp";
+	public final static String tempFileLocation = "C:\\Users\\Himesh\\OneDrive - Dalhousie University\\Thesis\\BroadRelease";
+			//"/Users/himesh/Documents/temp";
 			//"/home/himesh/Tagman-java/temp";
 	// "/Users/himesh/Documents/temp";
 	// "/home/himesh/Tagman-java/temp";
@@ -10,7 +11,11 @@ public class Constants {
 	public final static String JavaHomePath = "/usr/bin/java";
 	// "/Library/Java/JavaVirtualMachines/jdk-18.0.1.1.jdk/Contents/Home";
 	// "/usr/bin/java";
-
+	
+	public static final String codeSplitMethod = "codesplit_java_method";
+	
+	public static final String codeSplitClass = "codesplit_java_class";
+	
 	public static final String GradlePath = "/usr/bin/gradle";
 	// "/opt/homebrew/bin/gradle";
 	// "/usr/bin/gradle";
@@ -32,6 +37,8 @@ public class Constants {
 	// "/home/himesh/python_scripts/download.py";
 
 	public static final int MaxUserAnnotations = 2500;
+
+	public static final int CCValue = 0;
 
 	public static String sampleConstraintValue = "2";
 

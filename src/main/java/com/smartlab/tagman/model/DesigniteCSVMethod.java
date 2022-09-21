@@ -25,7 +25,7 @@ public class DesigniteCSVMethod {
 	@CsvBindByName(column = "Type Name")
 	private String typeName;
 
-	@CsvBindByName(column = "Method Name")
+	@CsvBindByName(column = "MethodName")
 	private String methodName;
 
 	@CsvBindByName(column = "LOC")

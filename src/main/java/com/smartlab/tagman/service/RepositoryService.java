@@ -49,8 +49,10 @@ public class RepositoryService {
 		System.out.println("importing folder");
 		//importService.importFolder(TagmanUtil.getBaseFile() + File.separator + "codesplit_java_class2",
 		//		TagmanUtil.getBaseFile() + File.separator + "designite_out_java2", true);
-		 importService.importFolder(TagmanUtil.getBaseFile()+File.separator+"codesplit_java_method2",
-				 TagmanUtil.getBaseFile() + File.separator + "designite_out_java2", false);
+		 importService.importFolder(TagmanUtil.getBaseFile()+File.separator+Constants.codeSplitClass,
+				 TagmanUtil.getBaseFile() + File.separator + "designite_out_java", true);
+		 importService.importFolder(TagmanUtil.getBaseFile()+File.separator+Constants.codeSplitMethod,
+				 TagmanUtil.getBaseFile() + File.separator + "designite_out_java", false);
 
 		System.out.println("Ret Val:" + retVal);
 

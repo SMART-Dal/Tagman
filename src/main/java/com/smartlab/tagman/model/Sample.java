@@ -36,6 +36,30 @@ public class Sample {
 	private int sampleConstraints;
 
 	private Long designiteId;
+	
+	private boolean hasSmell;
+	
+	private String smells;
+
+	public boolean isHasSmell() {
+		return hasSmell;
+	}
+
+	public void setHasSmell(boolean hasSmell) {
+		this.hasSmell = hasSmell;
+	}
+
+	public String getSmells() {
+		return smells;
+	}
+
+	public void setSmells(String smells) {
+		this.smells = smells;
+	}
+
+	public void setClass(boolean isClass) {
+		this.isClass = isClass;
+	}
 
 	@ElementCollection
 	private List<String> designiteSmells;
@@ -63,6 +87,20 @@ public class Sample {
 	 */
 	public Long getId() {
 		return id;
+	}
+
+	public Sample(Long id, String pathToFile, boolean isClass, String projectName,
+			Long designiteId, boolean hasSmell, String smells, List<String> designiteSmells) {
+		super();
+		this.id = id;
+		this.pathToFile = pathToFile;
+		this.isClass = isClass;
+		this.projectName = projectName;
+		this.sampleConstraints = 0;
+		this.designiteId = designiteId;
+		this.hasSmell = hasSmell;
+		this.smells = smells;
+		this.designiteSmells = designiteSmells;
 	}
 
 	/**

@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,6 +42,9 @@ public class ImportService {
 	DesigniteCSVRepository designiteRepository;
 
 	@Autowired
+	DesigniteService designiteService;
+
+	@Autowired
 	DesigniteCSVMethodRepository designiteMethodRepository;
 	@Autowired
 	TagmanUtil tagmanUtil;
@@ -48,6 +52,7 @@ public class ImportService {
 	public boolean importFolder(String folderName, String designFolder, boolean isClass) throws IOException {
 
 		Path designDir = Paths.get(designFolder);
+		System.out.println("Starting design file parse. Class - " + isClass);
 //		Files.walk(designDir).forEach(path -> {
 //			try {
 //				processDesignFile(path.toFile(), isClass);
@@ -61,8 +66,9 @@ public class ImportService {
 //		});
 		Path dir = Paths.get(folderName);
 //
+		System.out.println("Starting code file parse. Class is " + isClass);
 		Files.walk(dir).forEach(path -> {
-			System.out.println("starting file parse");
+			// System.out.println("starting file parse");
 			processFile(path.toFile(), isClass);
 		});
 
@@ -81,22 +87,33 @@ public class ImportService {
 //				List<DesigniteCSV> lines = parseCSVFile(file);
 //				// System.out.println("Processing File: " + file.getAbsolutePath());
 
-				// importRepository.save(new Sample(file.getAbsolutePath(), isClass));
-		//	} else 
+			// importRepository.save(new Sample(file.getAbsolutePath(), isClass));
+			// } else
+			if (isClass) {
 				if (file.getAbsolutePath().endsWith(".csv")
-					&& !file.getAbsolutePath().toLowerCase().contains("__macosx")
-					&& file.getAbsolutePath().toLowerCase().contains("typemetrics")) {
-				String folder = parseFolderName(file.getAbsolutePath(), "designiteOutput");
+						&& !file.getAbsolutePath().toLowerCase().contains("__macosx")
+						&& file.getAbsolutePath().toLowerCase().contains("typemetrics")) {
+					String folder = parseFolderName(file.getAbsolutePath(), "designiteOutput");
 
-				List<DesigniteCSV> lines = parseCSVFile(file);
+					List<DesigniteCSV> lines = parseCSVFile(file);
 
+				}
+			} else {
+				if (file.getAbsolutePath().endsWith(".csv")
+						&& !file.getAbsolutePath().toLowerCase().contains("__macosx")
+						&& file.getAbsolutePath().toLowerCase().contains("methodmetrics")) {
+					String folder = parseFolderName(file.getAbsolutePath(), "designiteOutput");
+
+					List<DesigniteCSVMethod> lines = parseCSVFileMethod(file);
+
+				}
 			}
 		}
 	}
 
 	private List<DesigniteCSVMethod> parseCSVFileMethod(File file) throws IllegalStateException, FileNotFoundException {
 
-		System.out.println("Parsing csv");
+		// System.out.println("Parsing csv");
 		List<DesigniteCSVMethod> beans = new CsvToBeanBuilder<DesigniteCSVMethod>(new FileReader(file))
 				.withType(DesigniteCSVMethod.class).build().parse();
 		for (DesigniteCSVMethod bean : beans) {
@@ -108,7 +125,7 @@ public class ImportService {
 
 	private List<DesigniteCSV> parseCSVFile(File file) throws IllegalStateException, FileNotFoundException {
 
-		System.out.println("Parsing csv");
+		// System.out.println("Parsing csv");
 		List<DesigniteCSV> beans = new CsvToBeanBuilder<DesigniteCSV>(new FileReader(file)).withType(DesigniteCSV.class)
 				.build().parse();
 		for (DesigniteCSV bean : beans) {
@@ -124,17 +141,90 @@ public class ImportService {
 		} else {
 			if (file.getAbsolutePath().endsWith(".code")
 					&& !file.getAbsolutePath().toLowerCase().contains("__macosx")) {
-				String folder = parseFolderName(file.getAbsolutePath(), "tagUtilOutput");
-				System.out.println("Processing File: " + file.getAbsolutePath());
 
-				System.out.println(file.getAbsolutePath().substring(Constants.tempFileLocation.length() - 1));
+				// for windows
+				String folder = parseFolderNameWindows(file.getAbsolutePath(), isClass);
+				// for linux String folder = parseFolderName(file.getAbsolutePath(),
+				// "tagUtilOutput");
+				// System.out.println("Processing File: " + file.getAbsolutePath());
+				String fileName = file.getAbsolutePath();
+				// for windows
+				String packageOrClassName = fileName.substring(nthLastIndexOf(2, File.separator, fileName) + 1,
+						nthLastIndexOf(1, File.separator, fileName));
+
+				String typeName = fileName.substring(fileName.lastIndexOf(File.separator) + 1,
+						fileName.lastIndexOf("."));
+				List designiteEntries;
+				String smells = "";
+				Long id = (long) -1.00;
+				if (!isClass) {
+					String packageName = fileName.substring(nthLastIndexOf(3, File.separator, fileName) + 1,
+							nthLastIndexOf(2, File.separator, fileName));
+					designiteEntries = designiteService.getdesigniteMethodEntries(packageName, packageOrClassName,
+							folder, typeName);
+					if (designiteEntries.size() > 0) {
+						DesigniteCSVMethod methodFromDes = (DesigniteCSVMethod) designiteEntries.get(0);
+						System.out.println("result -- " + methodFromDes.getId());
+						id = methodFromDes.getId();
+						smells = parseSmellsMethod(methodFromDes);
+
+					} else {
+						System.out.println("ERROR COULD NOT FIND DES METHOD");
+					}
+				} else {
+					designiteEntries = designiteService.getdesigniteEntries(packageOrClassName, typeName, folder);
+
+					if (designiteEntries.size() > 0) {
+						DesigniteCSV methodFromDes = (DesigniteCSV) designiteEntries.get(0);
+						System.out.println("result -- " + methodFromDes.getId());
+						id = methodFromDes.getId();
+						smells = parseSmells(methodFromDes);
+					} else {
+						System.out.println("ERROR COULD NOT FIND DES METHOD");
+					}
+				}
+
+				// for linux String typeName =
+				// fileName.substring(fileName.lastIndexOf("/")-1,fileName.lastIndexOf(".")-1);
+				// System.out.println("packageName" + packageOrClassName);
+				// System.out.println(file.getAbsolutePath().substring(Constants.tempFileLocation.length()
+				// - 1));
 				// List<String> smells = tagmanUtil.calculateSmells(file, folder);
-				
 				importRepository
 						.save(new Sample(null, file.getAbsolutePath().substring(Constants.tempFileLocation.length()),
-								isClass, folder, new ArrayList<String>(),new Long(0)));
+								isClass, folder, id, !smells.equals(""), smells, new ArrayList<String>()));
+//				importRepository
+//						.save(new Sample(null, file.getAbsolutePath().substring(Constants.tempFileLocation.length()),
+//								isClass, folder, new ArrayList<String>(), id));
 			}
 		}
+	}
+
+	private String parseSmellsMethod(DesigniteCSVMethod methodFromDes) {
+
+		Random random = new Random();
+		if (random.nextBoolean())
+			return "1,2,3";
+		else
+			return "";
+	}
+
+	private String parseSmells(DesigniteCSV methodFromDes) {
+		Random random = new Random();
+		if (random.nextBoolean())
+			return "1,2,3";
+		else
+			return "";
+	}
+
+	private String parseFolderNameWindows(String absName, boolean isClass) {
+		String processedName = isClass ? absName.substring(
+				(Constants.tempFileLocation + File.separator + Constants.codeSplitClass + File.separator).length())
+				: absName.substring(
+						(Constants.tempFileLocation + File.separator + Constants.codeSplitMethod + File.separator)
+								.length());
+
+		return processedName.substring(0, processedName.indexOf('\\'));
 	}
 
 	private String parseFolderName(String absolutePath, String outputFolder) {
@@ -181,4 +271,9 @@ public class ImportService {
 		return convFile;
 	}
 
+	public int nthLastIndexOf(int nth, String ch, String string) {
+		if (nth <= 0)
+			return string.length();
+		return nthLastIndexOf(--nth, ch, string.substring(0, string.lastIndexOf(ch)));
+	}
 }
