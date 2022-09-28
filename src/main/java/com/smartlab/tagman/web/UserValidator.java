@@ -25,19 +25,19 @@ public class UserValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
+            errors.rejectValue("username", "Username too short. Minimum length is 6.");
         }
         if (userService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+            errors.rejectValue("username", "User already exists. Please choose another username. ");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
         if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-            errors.rejectValue("password", "Size.userForm.password");
+            errors.rejectValue("password", "Password too short. Minimum length is 6. ");
         }
 
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
-            errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
+            errors.rejectValue("passwordConfirm", "Password and Confirm password are not the same.");
         }
     }
 }

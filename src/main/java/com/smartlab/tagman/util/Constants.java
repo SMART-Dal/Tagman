@@ -2,7 +2,8 @@ package com.smartlab.tagman.util;
 
 public class Constants {
 
-	public final static String tempFileLocation = "C:\\Users\\Himesh\\OneDrive - Dalhousie University\\Thesis\\BroadRelease";
+	public final static String tempFileLocation = "/home/himesh/Tagman-java/temp2/final";
+			//"C:\\Users\\Himesh\\OneDrive - Dalhousie University\\Thesis\\BroadRelease";
 			//"/Users/himesh/Documents/temp";
 			//"/home/himesh/Tagman-java/temp";
 	// "/Users/himesh/Documents/temp";

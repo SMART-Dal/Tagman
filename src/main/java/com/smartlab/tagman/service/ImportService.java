@@ -201,20 +201,41 @@ public class ImportService {
 	}
 
 	private String parseSmellsMethod(DesigniteCSVMethod methodFromDes) {
+		int cc = Integer.parseInt(methodFromDes.getCC());
+		int pc = Integer.parseInt(methodFromDes.getPC());
+		System.out.println("cc"+cc+" pc:"+pc);
+		
+		String smells = "";
+		if (cc > 2 && cc <= 4)
+			smells += "1,";
+		if (pc > 2 && pc < 4)
+			smells += "2,";
 
-		Random random = new Random();
-		if (random.nextBoolean())
-			return "1,2,3";
-		else
-			return "";
+		if (smells.length() > 1)
+			if (smells.indexOf(",") > 0) {
+				smells = smells.substring(0, smells.length() - 1);
+			}
+		System.out.println(smells);
+		return smells;
 	}
 
 	private String parseSmells(DesigniteCSV methodFromDes) {
-		Random random = new Random();
-		if (random.nextBoolean())
-			return "1,2,3";
-		else
-			return "";
+
+		String smells = "";
+		Double multipleAbs = Double.parseDouble(methodFromDes.getLCOM());
+		System.out.println("abs"+multipleAbs);
+		if (multipleAbs > 0.43 && multipleAbs < 0.75)
+		{
+			System.out.println("Found smell 3");
+			smells += "3,";
+		}
+		if (smells.length() > 1)
+			if (smells.indexOf(",") > 0) {
+				smells = smells.substring(0, smells.length() - 1);
+			}
+		System.out.println(smells);
+
+		return smells;
 	}
 
 	private String parseFolderNameWindows(String absName, boolean isClass) {
@@ -224,7 +245,7 @@ public class ImportService {
 						(Constants.tempFileLocation + File.separator + Constants.codeSplitMethod + File.separator)
 								.length());
 
-		return processedName.substring(0, processedName.indexOf('\\'));
+		return processedName.substring(0, processedName.indexOf(File.separator));
 	}
 
 	private String parseFolderName(String absolutePath, String outputFolder) {

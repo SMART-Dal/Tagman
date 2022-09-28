@@ -79,7 +79,7 @@ public class UserController {
 		if (!regAllowed.equalsIgnoreCase("true"))
 
 			return "regnotallowed";
-
+		
 		if (bindingResult.hasErrors()) {
 			return "signup-new";
 		}

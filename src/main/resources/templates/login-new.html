@@ -120,7 +120,8 @@
 
 			<input name="password" type="password" class="form-control" placeholder="Password" />
 			<span class="has-error" th:text="${error}"></span>
-
+			<br>
+			<br>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<button type="submit" class="btn btn-primary btn-lg">Login</button>
 		</form>

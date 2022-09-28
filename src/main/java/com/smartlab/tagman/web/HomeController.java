@@ -55,12 +55,13 @@ public class HomeController {
 
 	@GetMapping({ "/", "/welcome" })
 	public String welcome(HttpServletRequest request, Model model) throws IOException {
-
+		System.out.println("In Home Controller Get Mapping");
 		User loggedIn = securityService.getDetails();
 		if (!securityService.isAuthenticated()) {
-
+			System.out.println("Is not authenticated");
 			return "login-new";
 		} else if (loggedIn.isAdmin) {
+			System.out.println("Is admin");
 			model.addAttribute("user", loggedIn);
 			return "index";
 		}
@@ -102,8 +103,9 @@ public class HomeController {
 				"1", false, null);
 		// String content = Files.toString(new File("file.txt"), Charsets.UTF_8);
 		Sample randomSample = modelReturn.getSample();
-		System.out.println("randomSample" + randomSample);
+		System.out.println("random Sample from database :" + randomSample);
 		if (randomSample.getIsClass()) {
+			System.out.println("Sample is class");
 			String packageName = randomSample.getPathToFile().substring(
 					TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(), File.separator, 4) + 1,
 					TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(), File.separator, 5));
@@ -114,10 +116,13 @@ public class HomeController {
 			List<DesigniteCSV> desginEntry = designiteService.getdesigniteEntries(packageName, className,
 					randomSample.getProjectName());
 			if (desginEntry.size() > 0) {
-				System.out.println("entry" + desginEntry.get(0).toString());
+				System.out.println("Query returned more than zero results");
+				System.out.println("Entry put into model: " + desginEntry.get(0).toString());
 				model.addAttribute("designEntry", desginEntry.get(0));
 			}
 		} else {
+			System.out.println("Sample is method");
+			
 			String packageName = randomSample.getPathToFile().substring(
 					TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(), File.separator, 4) + 1,
 					TagmanUtil.ordinalIndexOf(randomSample.getPathToFile(), File.separator, 5));
@@ -132,6 +137,9 @@ public class HomeController {
 					randomSample.getProjectName(), methodName);
 
 			if (desginEntry.size() > 0) {
+				System.out.println("Query returned more than zero results");
+				System.out.println("Entry put into model: " + desginEntry.get(0).toString());
+		
 				// System.out.println("entry" + desginEntry.get(0).toString());
 				model.addAttribute("designEntryMethod", desginEntry.get(0));
 			}
@@ -150,7 +158,22 @@ public class HomeController {
 			// System.out.println(TagmanUtil.readFile(randomSample.getPathToFile()).toString());
 			model.addAttribute("user", loggedIn);
 			model.addAttribute("isEmpty", "0");
-			model.addAttribute("smellsSent", List.of(randomSample.getSmells().split(",")));
+			System.out.println("Samples in list:" + randomSample.getSmells());
+			List<String> smells = List.of(randomSample.getSmells().split(","));
+			List<String> smellsConv = new ArrayList<>();
+
+			smells.stream().forEach(smell -> {
+				if (smell.equals("1"))
+					smellsConv.add("Complex Method");
+				else if (smell.equals("2"))
+					smellsConv.add("Long Method");
+				else if (smell.equals("3"))
+					smellsConv.add("MultiFaceted Abstraction");
+
+			});
+			smellsConv.forEach(System.out::println);
+
+			model.addAttribute("smellsSent", smellsConv);
 //		
 //		importService.processDesignFile(new File(
 //				"/Users/himesh/Library/CloudStorage/OneDrive-DalhousieUniversity/Thesis/Mootex/run2/eval/designite_out_java/adikul30_MaterialNews/TypeMetrics.csv"),
@@ -253,10 +276,27 @@ public class HomeController {
 		}
 		if (smells.size() > 0)
 			model.addAttribute("smells", smells);
+		List<String> smellsSent = List.of(sample.getSmells().split(","));
+		List<String> smellsConv = new ArrayList<>();
+
+		smellsSent.stream().forEach(smell -> {
+			if (smell.equals("1"))
+				smellsConv.add("Complex Method");
+			else if (smell.equals("2"))
+				smellsConv.add("Long Method");
+			else if (smell.equals("3"))
+				smellsConv.add("MultiFaceted Abstraction");
+
+		});
+		smellsConv.forEach(System.out::println);
+
+		model.addAttribute("smellsSent", smellsConv);
 	}
 
 	@GetMapping("/instructions")
 	public String returnInst() {
 		return "instructions";
 	}
+	
+	
 }

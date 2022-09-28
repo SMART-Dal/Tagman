@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Instructions - Tagman Java</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
+	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+	<link rel="shortcut icon" href="favicon.ico">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!-- FontAwesome JS-->
+	<script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+
+	<!-- App CSS -->
+	<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+	<link href="/css/prism.css" rel="stylesheet">
+
+</head>
+
+<body class="app">
+	<form id="logoutForm" method="POST" th:action="@{/logout}">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
+	<header class="app-header fixed-top">
+		<div class="app-header-inner">
+			<div class="container-fluid py-2">
+				<div class="app-header-content">
+					<div class="row justify-content-between align-items-center">
+
+						<div class="col-auto">
+							<a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"
+									role="img">
+									<title>Menu</title>
+									<path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
+										stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
+								</svg>
+							</a>
+						</div>
+						<!--//col-->
+						<!--//app-search-box-->
+
+						<div class="app-utilities col-auto">
+
+							<!--//app-utility-item-->
+
+							<!--//app-utility-item-->
+
+							<div class="app-utility-item app-user-dropdown dropdown">
+							</li>
+								</ul>
+							</div>
+							<!--//app-user-dropdown-->
+						</div>
+						<!--//app-utilities-->
+					</div>
+					<!--//row-->
+				</div>
+				<!--//app-header-content-->
+			</div>
+			<!--//container-fluid-->
+		</div>
+		<!--//app-header-inner-->
+		<div id="app-sidepanel" class="app-sidepanel">
+			<div id="sidepanel-drop" class="sidepanel-drop"></div>
+			<div class="sidepanel-inner d-flex flex-column">
+				<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+				<div class="app-branding">
+					<a class="app-logo" href="index.html"><img class="logo-icon me-2" src="assets/images/app-logo.svg"
+							alt="logo"><span class="logo-text">TAGMAN</span></a>
+
+				</div>
+				<!--//app-branding-->
+
+
+				<!--//app-nav-->
+				<div class="app-sidepanel-footer">
+					<nav class="app-nav app-nav-footer">
+						<ul class="app-menu footer-menu list-unstyled">
+							<li class="nav-item">
+								<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+							
+								<!--//nav-link-->
+							</li>
+							<!--//nav-item-->
+						</ul>
+						<!--//footer-menu-->
+					</nav>
+				</div>
+				<!--//app-sidepanel-footer-->
+
+			</div>
+			<!--//sidepanel-inner-->
+		</div>
+		<!--//app-sidepanel-->
+	</header>
+	<!--//app-header-->
+
+
+	<!--//app-wrapper-->
+	<div class="app-wrapper">
+		<div class="app-content pt-3 p-md-3 p-lg-4">
+			<div class="container-xl">
+				<div id="faq1-accordion" class="faq1-accordion faq-accordion accordion">
+
+					<div class="app-card app-card-notification shadow-sm mb-4">
+						<div class="app-card-header px-4 py-3">
+							<div class="row g-3 align-items-center">
+								<div class="col-12 col-lg-auto text-center text-lg-start">
+
+								</div>
+								<!--//col-->
+								<div class="col-12 col-lg-auto text-center text-lg-start">
+									<h4 class="notification-title mb-1">Our Privacy Policy</h4>
+
+
+								</div>
+								<!--//col-->
+							</div>
+							<!--//row-->
+						</div>
+						<!--//app-card-header-->
+						<div class="app-card-body p-4">
+							<div class="notification-content">
+
+								You are invited to take part in a research study being conducted by researchers at
+								Dalhousie University, Halifax, NS, Canada.
+								The purpose of this study is to prepare a manually annotated dataset of code smells
+								using code snippets and then use it as a dataset to predict code smells using Deep
+								Learning methods. We will write up the results of this research to publish in a
+								peer-reviewed academic journal or conference.
+								As a participant in the research, you will be shown code snippets and you will be asked
+								to annotate if the code snippets contain particular code smells in an online survey
+								using a proprietary survey mechanism built by researchers at Dalhousie University and
+								hosted on servers at Dalhousie University. It will take 25-35 minutes to complete this
+								survey.
+								The data you provide will be saved on Dalhousie University’s password protected and
+								encrypted servers and Dalhousie’s secure cloud storage. The data will then be fed into a
+								deep learning pipeline and used to predict code smells.
+								Your participation in this research is entirely your choice. You do not have to answer
+								questions that you do not want to answer, and you are welcome to stop the survey at any
+								time if you no longer want to participate. All you need to do is close your browser.
+								However, if you do complete your survey and later change your mind after the survey
+								period is over, we will not be able to remove the information you provided because the
+								surveys are completed anonymously, so we would not know which response is yours. Only
+								two researchers named above will have access to the survey results.
+
+								We will describe and share general findings in presentations and scientific journals. If
+								and only if we are satisfied that it is virtually impossible to de-anonymize any of the
+								records in the dataset, we will publish the anonymous dataset in a scientific data
+								repository. Publishing datasets helps scientists conduct research, which helps improve
+								our knowledge of the world. However, if we can any way that someone might be able to
+								link some of the data back to an individual person, we will not publish the dataset.
+								The risks associated with this study are no greater than those you encounter in your
+								everyday life.
+								If you choose to take part in this study, your participation will entitle you to be
+								entered in a pool of participants to randomly win of the four $25 gift cards.
+								If you wish to see the results of the survey, please email the lead researcher
+								(Himesh.nandani@dal.ca) after the survey period and we will forward you a copy of the
+								description of results.
+								If you have any questions about this project and survey, please feel free to contact us
+								at
+								Himesh.nandani@dal.ca or tushar@dal.ca. We will be happy to answer any questions you may
+								have.
+								If you have any ethical concerns about your participation in this research, you may
+								contact Research Ethics, Dalhousie University at (902) 494-1462, or email ethics@dal.ca
+								(and reference REB file 2022-6195).”
+
+							</div>
+						</div>
+						<!--//app-card-body-->
+
+						<!--//app-card-footer-->
+					</div>
+				</div>
+
+
+				<form action="/login">
+					<input type="submit" value="Back" class="btn app-btn-primary"></button>
+
+
+
+					<!--//app-card-->
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- Javascript -->
+	<script src="assets/plugins/popper.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Charts JS -->
+	<script src="assets/plugins/chart.js/chart.min.js"></script>
+	<script src="assets/js/index-charts.js"></script>
+
+	<!-- Page Specific JS -->
+	<script src="assets/js/app.js"></script>
+	<script src="/js/keyShort.js"></script>
+	<script src="/js/prism.js"></script>
+
+</body>
+
+</html>

@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-	<title>Bootstrap Sign up Form Horizontal</title>
+	<title>Sign up - Tagman Dalhousie</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -119,18 +119,21 @@
 				<div class="col-8">
 					<input type="text" th:field="*{bannerId}" class="form-control" placeholder="Banner ID" autofocus="true">
 			</div>-->
-			<input type="hidden" th:field="*{bannerId}" class="form-control" placeholder="Banner ID" autofocus="true" value="B001111">
+			<input type="hidden" th:field="*{bannerId}" class="form-control" placeholder="Banner ID" autofocus="true"
+				value="B001111">
 			<div class="form-group row">
 				<label class="col-form-label col-4">Username</label>
 				<div class="col-8">
-					<input type="text" th:field="*{username}" class="form-control" placeholder="Username"
-						autofocus="true">
+					<input minlength="8" type="text" required th:field="*{username}" class="form-control"
+						placeholder="Username" autofocus="true">
+					<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</span>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-form-label col-4">Password</label>
 				<div class="col-8">
-					<input type="password" th:field="*{password}" class="form-control" placeholder="Password">
+					<input minlength="8" required type="password" th:field="*{password}" class="form-control"
+						placeholder="Password" name="password" id="password">
 
 					<span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 				</div>
@@ -138,14 +141,18 @@
 			<div class="form-group row">
 				<label class="col-form-label col-4">Confirm Password</label>
 				<div class="col-8">
-					<input type="password" th:field="*{passwordConfirm}" class="form-control"
-						placeholder="Confirm your password">
+					<input required minlength="8" type="password" th:field="*{passwordConfirm}" class="form-control"
+						placeholder="Confirm your password" oninput="check(this)">
+					<span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}"
+						th:errors="*{passwordConfirm}"></span>
+
 				</div>
 			</div>
+
 			<div class="form-group row">
 				<div class="col-8 offset-4">
-					<p><label class="form-check-label"><input type="checkbox" required="required"> I accept the <a
-								href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>.</label></p>
+					<p><label class="form-check-label"><input type="checkbox" required="required"> I  consent to the following <a
+								href="#" data-toggle="modal" data-target="#exampleModalLong">Policies and Terms of Use. </a></label></p>
 					<button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
 				</div>
 			</div>
@@ -153,7 +160,93 @@
 		<div class="text-center">Already have an account? <a href="/login">Login here</a></div>
 	</div>
 
+
+	<!-- Button trigger modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Consent/Terms of Use</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					You are invited to take part in a research study being conducted by researchers at
+					Dalhousie University, Halifax, NS, Canada.
+					<br>
+					The purpose of this study is to prepare a manually annotated dataset of code smells
+					using code snippets and then use it as a dataset to predict code smells using Deep
+					Learning methods. We will write up the results of this research to publish in a
+					peer-reviewed academic journal or conference.
+					<br>
+					As a participant in the research, you will be shown code snippets and you will be asked
+					to annotate if the code snippets contain particular code smells in an online survey
+					using a proprietary survey mechanism built by researchers at Dalhousie University and
+					hosted on servers at Dalhousie University. It will take 25-35 minutes to complete this
+					survey.
+					<br>
+					The data you provide will be saved on Dalhousie University’s password protected and
+					encrypted servers and Dalhousie’s secure cloud storage. The data will then be fed into a
+					deep learning pipeline and used to predict code smells.
+					<br>
+					Your participation in this research is entirely your choice. You do not have to answer
+					questions that you do not want to answer, and you are welcome to stop the survey at any
+					time if you no longer want to participate. All you need to do is close your browser.
+					However, if you do complete your survey and later change your mind after the survey
+					period is over, we will not be able to remove the information you provided because the
+					surveys are completed anonymously, so we would not know which response is yours. Only
+					two researchers named above will have access to the survey results.
+					<br>
+					We will describe and share general findings in presentations and scientific journals. If
+					and only if we are satisfied that it is virtually impossible to de-anonymize any of the
+					records in the dataset, we will publish the anonymous dataset in a scientific data
+					repository. Publishing datasets helps scientists conduct research, which helps improve
+					our knowledge of the world. However, if we can any way that someone might be able to
+					link some of the data back to an individual person, we will not publish the dataset.
+					The risks associated with this study are no greater than those you encounter in your
+					everyday life.
+					<br>
+					If you choose to take part in this study, your participation will entitle you to be
+					entered in a pool of participants to randomly win of the four $25 gift cards.
+					If you wish to see the results of the survey, please email the lead researcher
+					(Himesh.nandani@dal.ca) after the survey period and we will forward you a copy of the
+					description of results.
+					<br>
+					If you have any questions about this project and survey, please feel free to contact us
+					at
+					Himesh.nandani@dal.ca or tushar@dal.ca. We will be happy to answer any questions you may
+					have.
+					<br>
+					If you have any ethical concerns about your participation in this research, you may
+					contact Research Ethics, Dalhousie University at (902) 494-1462, or email ethics@dal.ca
+					(and reference REB file 2022-6195).”
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<script src="/js/main.js"></script>
+	<script language='javascript' type='text/javascript'>
+		function check(input) {
+			if (input.value != document.getElementById('password').value) {
+				input.setCustomValidity('Password Must be Matching.');
+			} else {
+				// input is valid -- reset the error message
+				input.setCustomValidity('');
+			}
+		}
+	</script>
 </body>
 
 </html>
