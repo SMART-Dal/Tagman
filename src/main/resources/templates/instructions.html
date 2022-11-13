@@ -12,6 +12,7 @@
 	<meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
 	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
 	<link rel="shortcut icon" href="favicon.ico">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<!-- FontAwesome JS-->
 	<script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
@@ -113,7 +114,7 @@
 
 						<li class="nav-item">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link " href="/">
+							<a class="nav-link " href="/annotate">
 								<span class="nav-icon">
 									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door"
 										fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -170,6 +171,137 @@
 	<div class="app-wrapper">
 		<div class="app-content pt-3 p-md-3 p-lg-4">
 			<div class="container-xl">
+
+
+
+				<!--div start-->
+
+				<div id="faq1-accordion" class="faq1-accordion faq-accordion accordion">
+
+					<div class="app-card app-card-notification shadow-sm mb-4">
+						<div class="app-card-header px-4 py-3">
+							<div class="row g-3 align-items-center">
+								<div class="col-12 col-lg-auto text-center text-lg-start">
+
+								</div>
+								<!--//col-->
+								<div class="col-12 col-lg-auto text-center text-lg-start">
+									<div class="notification-type mb-2"><span class="badge bg-info">Tagman</span></div>
+									<h4 class="notification-title mb-1">What are we trying to do?</h4>
+
+
+								</div>
+								<!--//col-->
+							</div>
+							<!--//row-->
+						</div>
+						<!--//app-card-header-->
+						<div class="app-card-body p-4">
+							<div class="notification-content">The purpose of this study is to prepare a manually
+								annotated dataset of code smells using code snippets and then use it as a dataset to
+								predict code smells using Deep Learning methods.
+								<br>
+								<br>
+								We will write up the results of this research to publish in a peer-reviewed academic
+								journal or conference.
+
+
+							</div>
+						</div>
+						<!--//app-card-body-->
+
+						<!--//app-card-footer-->
+					</div>
+				</div>
+
+				<!--div end-->
+
+				<!--div start-->
+
+				<div id="faq1-accordion" class="faq1-accordion faq-accordion accordion">
+
+					<div class="app-card app-card-notification shadow-sm mb-4">
+						<div class="app-card-header px-4 py-3">
+							<div class="row g-3 align-items-center">
+								<div class="col-12 col-lg-auto text-center text-lg-start">
+
+								</div>
+								<!--//col-->
+								<div class="col-12 col-lg-auto text-center text-lg-start">
+									<div class="notification-type mb-2"><span class="badge bg-info">Tagman</span></div>
+									<h4 class="notification-title mb-1">What is in it for you?</h4>
+
+
+								</div>
+								<!--//col-->
+							</div>
+							<!--//row-->
+						</div>
+						<!--//app-card-header-->
+						<div class="app-card-body p-4">
+							<div class="notification-content">You may choose to participate in a random draw to win one
+								of the four $25 Amazon gift cards.
+								Also, we plan to acknowledge every contributor who annotates at least 50 samples on the
+								webpage of this dataset. If you leave your name and give us consent, we will gladly
+								include you as a contributor to this dataset.
+								We plan to make this dataset available publicly to all.
+
+
+
+							</div>
+						</div>
+						<!--//app-card-body-->
+
+						<!--//app-card-footer-->
+					</div>
+				</div>
+
+				<!--div end-->
+
+
+				<!--div start-->
+
+				<div id="faq1-accordion" class="faq1-accordion faq-accordion accordion">
+
+					<div class="app-card app-card-notification shadow-sm mb-4">
+						<div class="app-card-header px-4 py-3">
+							<div class="row g-3 align-items-center">
+								<div class="col-12 col-lg-auto text-center text-lg-start">
+
+								</div>
+								<!--//col-->
+								<div class="col-12 col-lg-auto text-center text-lg-start">
+									<div class="notification-type mb-2"><span class="badge bg-info">Tagman</span></div>
+									<h4 class="notification-title mb-1">What do we expect you to do?</h4>
+
+
+								</div>
+								<!--//col-->
+							</div>
+							<!--//row-->
+						</div>
+						<!--//app-card-header-->
+						<div class="app-card-body p-4">
+							<div class="notification-content">As a participant in the research, you will be shown code
+								snippets to annotate if the code snippets contain specific code smells. We describe each
+								considered code smell on this page. Each page shows one sample (either a method or a
+								class) code snippet to you; you need to observe the snippet and decide whether the
+								specific smell is present in the snippet. Check the box if the smell is present; leave
+								the box unchecked if it is not. There is no minimum or maximum limit for you to annotate
+								the samples. However, the more samples you annotate, the more you contribute to the open
+								dataset.
+								<br>
+								<br>
+							</div>
+						</div>
+						<!--//app-card-body-->
+
+						<!--//app-card-footer-->
+					</div>
+				</div>
+
+				<!--div end-->
+
 				<div id="faq1-accordion" class="faq1-accordion faq-accordion accordion">
 
 					<div class="app-card app-card-notification shadow-sm mb-4">
@@ -239,37 +371,41 @@
 							<br><br><br>
 							<i>Example</i>
 							<br><br><br>
-							<pre class="language-java">private static void generatePollutantwisePollutionReport(Map<String, List<PollutantDetailsWithCity>> pollutantwisePollutantEntriesForReport, LocalDateTime generatedTime) throws Exception {
-    try {
-        List<String> headers = Arrays.asList("Average", "Max", "Min", "City");
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream("PollutantwisePollutionReport.pdf"));
-        document.open();
-        document.add(new Paragraph("India Pollution Report - Pollutant-wise", catFont));
-        document.add(new Paragraph("Generated on: " + generatedTime, smallBold));
+							
+<pre><code class="language-java">private static void	generatePollutantwisePollutionReport(Map<String, List<PollutantDetailsWithCity>> pollutantwisePollutantEntriesForReport, LocalDateTime generatedTime) throws Exception 
+								{
+									try {
+										List<String> headers = Arrays.asList("Average", "Max", "Min", "City");
+											Document document = new Document();
+											PdfWriter.getInstance(document, new
+											FileOutputStream("PollutantwisePollutionReport.pdf"));
+											document.open();
+											document.add(new Paragraph("India Pollution Report - Pollutant-wise",
+											catFont));
+											document.add(new Paragraph("Generated on: " + generatedTime, smallBold));
 
-        for(String tableHeader : pollutantwisePollutantEntriesForReport.keySet()) {
-            Paragraph paragraph = new Paragraph(tableHeader);
-            PdfPTable table = new PdfPTable(headers.size());
-            for(String rowHeader : headers) {
-                PdfPCell pdfPCell = new PdfPCell(new Phrase(rowHeader));
-                table.addCell(pdfPCell);
-            }
-            for (PollutantDetailsWithCity tableEntries : pollutantwisePollutantEntriesForReport.get(tableHeader)) {
-                table.addCell(String.valueOf(tableEntries.average));
-                table.addCell(String.valueOf(tableEntries.max));
-                table.addCell(String.valueOf(tableEntries.min));
-                table.addCell(String.valueOf(tableEntries.city));
-            }
-            paragraph.add(table);
-            document.add(paragraph);
-        }
-        document.close();
-    } catch(Exception e) {
-        System.err.println(e);
-    }
-}
-							</pre>
+												for(String tableHeader : pollutantwisePollutantEntriesForReport.keySet()) {
+													Paragraph paragraph = new Paragraph(tableHeader);
+													PdfPTable table = new PdfPTable(headers.size());
+														for(String rowHeader : headers) {
+														PdfPCell pdfPCell = new PdfPCell(new Phrase(rowHeader));
+														table.addCell(pdfPCell);
+													}
+												for (PollutantDetailsWithCity tableEntries : pollutantwisePollutantEntriesForReport.get(tableHeader)) {
+													table.addCell(String.valueOf(tableEntries.average));
+													table.addCell(String.valueOf(tableEntries.max));
+													table.addCell(String.valueOf(tableEntries.min));
+													table.addCell(String.valueOf(tableEntries.city));
+												}
+											paragraph.add(table);
+											document.add(paragraph);
+										}
+									document.close();
+								} catch(Exception e) {
+								  System.err.println(e);
+									}
+								}
+								</code> </pre>
 
 
 						</div>
@@ -288,17 +424,14 @@
 							<br><br><br>
 							<i>Example</i>
 							<br><br><br>
-							<pre class="language-java">private void child_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (child != null &&
-                e != null &&
-                (e.ChangedButton == MouseButton.Middle
-                || e.ChangedButton == MouseButton.Left && IsInPanMode()))
-            {
-                child.ReleaseMouseCapture();
-            }
-        }
-							</pre>
+							
+<pre><code class="language-java">private void child_MouseUp(object sender, MouseButtonEventArgs e) {
+								if (child != null && e != null && (e.ChangedButton == MouseButton.Middle || e.ChangedButton == MouseButton.Left && IsInPanMode()))
+									{
+										child.ReleaseMouseCapture();
+									}
+								}
+								</code> </pre>
 
 
 						</div>
@@ -314,26 +447,24 @@
 							<br><br><br>
 							<i>Example</i>
 							<br><br><br>
-							<pre class="language-java">public final class BadCatch {
+						
+<pre><code class="language-java">public final class BadCatch {
+								public static void main(String... arguments) {
+									List<String> quarks = Arrays.asList(
+										"up", "down", "charm", "strange", "top", "bottom"
+										);
 
-  public static void main(String... arguments) {
-    List<String> quarks = Arrays.asList(
-      "up", "down", "charm", "strange", "top", "bottom"
-    );   
-
-    //serialize the List
-    Path path = Paths.get("quarks.ser");
-    try(
-      ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(path))
-    ){
-      output.writeObject(quarks);
-    }
-    catch (IOException ex) {
-      //TRIED OUR BEST
-    }
-  }
-} 
-							</pre>
+										//serialize the List
+									Path path = Paths.get("quarks.ser");
+									try(ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(path))){
+											output.writeObject(quarks);
+										}
+										catch (IOException ex) {
+										//TRIED OUR BEST
+											}
+										}
+									}
+								</code> </pre>
 
 
 						</div>
@@ -352,8 +483,8 @@
 							<br><br><br>
 							<i>Example</i>
 							<br><br><br>
-							<pre class="language-java">calculateStatistics(customer, unit, null, true, false);
-							</pre>
+							<pre><code class="language-java">calculateStatistics(customer, unit, null, true, false);
+								</code> </pre>
 
 
 						</div>
@@ -419,12 +550,12 @@
 				</div>
 
 
-			<form action="/">
-				<input type="submit" value="Start" class = "btn app-btn-primary" ></button>
+				<form action="/annotate">
+					<input type="submit" value="Start" class="btn app-btn-primary"></button>
 
 
 
-				<!--//app-card-->
+					<!--//app-card-->
 			</div>
 		</div>
 	</div>

@@ -2,7 +2,8 @@ package com.smartlab.tagman.util;
 
 public class Constants {
 
-	public final static String tempFileLocation = "/home/himesh/Tagman-java/temp2/final";
+	public final static String tempFileLocation = "/home/himesh/tagman/phase2/source/final";
+			//"/home/himesh/Tagman-java/temp2/final";
 			//"C:\\Users\\Himesh\\OneDrive - Dalhousie University\\Thesis\\BroadRelease";
 			//"/Users/himesh/Documents/temp";
 			//"/home/himesh/Tagman-java/temp";
@@ -40,7 +41,13 @@ public class Constants {
 	public static final int MaxUserAnnotations = 2500;
 
 	public static final int CCValue = 0;
-
+	public static final int CCLow = 4;
+	public static final int CCHigh = 14;
+	public static final int PCLow = 3;
+	public static final int PCHigh = 12;
+	public static final double AbsLow = 0.4;
+	public static final double AbsHigh = 1.6;
+	
 	public static String sampleConstraintValue = "2";
 
 }

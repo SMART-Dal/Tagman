@@ -123,7 +123,7 @@ public class ImpExController {
 		// save the file on the local file system
 		try {
 			importService.importFolder((String) destDir.getAbsolutePath(), (String) designDir.getAbsolutePath(),
-					Boolean.getBoolean((String) "true"));
+					Boolean.getBoolean((String) "true"),true);
 
 		} catch (Exception e) {
 			System.out.println("Exception");

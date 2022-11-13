@@ -49,8 +49,8 @@ public class InstructorController {
 		// request.getSession().setAttribute("userIdForSafety", loggedIn.getId());
 		System.out.println("userForm"+userForm.getBannerId());
 		
-		User user = userService.findByBannerId(userForm.getBannerId());
-		marking.setUserId(userService.findByBannerId(userForm.getBannerId()).getId());
+		User user = new User();
+	//	marking.setUserId(userService.findByBannerId(userForm.getBannerId()).getId());
 
 		marking.setMarkerId(loggedIn.getId());
 		marking.setMarkedCorrect(userForm.getIsMarkedCorrect().equals("1") ? true : false);
@@ -67,8 +67,8 @@ public class InstructorController {
 			request.getSession().setAttribute("maxAnnotations", false);
 		}
 		System.out.println(userForm.toString());
-		request.getSession().setAttribute("userBanner",
-				userService.findByBannerId(userForm.getBannerId()).getBannerId());
+//		request.getSession().setAttribute("userBanner",
+//				userService.findByBannerId(userForm.getBannerId()).getBannerId());
 		request.getSession().setAttribute("introduceSample", true);
 		request.getSession().setAttribute("userIdForSafety", loggedIn.getId());
 		response.setStatus(302);

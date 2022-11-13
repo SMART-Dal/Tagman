@@ -30,13 +30,13 @@ public class DesigniteCSVMethod {
 
 	@CsvBindByName(column = "LOC")
 
-	private String LOC;
+	public String LOC;
 
 	@CsvBindByName(column = "CC")
-	private String CC;
+	public String CC;
 
 	@CsvBindByName(column = "PC")
-	private String PC;
+	public String PC;
 
 	@Override
 	public String toString() {

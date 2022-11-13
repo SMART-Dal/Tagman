@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        .requiresChannel(chanel -> chanel.anyRequest().requiresSecure())
             .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/registration").permitAll()
                 .anyRequest().authenticated()

@@ -60,14 +60,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findFittingBannerId(String bannerId) {
 		// TODO Auto-generated method stub
-		return userRepository.findAppropriateUsers(bannerId);
+		return userRepository.findAppropriateUsers("000000");
 	}
 
-	@Override
-	public User findByBannerId(String bannerId) {
-		// TODO Auto-generated method stub
-		return userRepository.findByBannerId(bannerId);
-	}
+//	@Override
+//	public User findByBannerId(String bannerId) {
+//		// TODO Auto-generated method stub
+//		return userRepository.findByBannerId(bannerId);
+//	}
 
 	@Override
 	public int updateUserCount(Long count, Long userId) {

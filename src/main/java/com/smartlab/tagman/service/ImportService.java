@@ -49,29 +49,35 @@ public class ImportService {
 	@Autowired
 	TagmanUtil tagmanUtil;
 
-	public boolean importFolder(String folderName, String designFolder, boolean isClass) throws IOException {
+	public boolean importFolder(String folderName, String designFolder, boolean isClass, boolean designFile)
+			throws IOException {
 
-		Path designDir = Paths.get(designFolder);
-		System.out.println("Starting design file parse. Class - " + isClass);
-//		Files.walk(designDir).forEach(path -> {
-//			try {
-//				processDesignFile(path.toFile(), isClass);
-//			} catch (IllegalStateException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (FileNotFoundException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		});
-		Path dir = Paths.get(folderName);
-//
-		System.out.println("Starting code file parse. Class is " + isClass);
-		Files.walk(dir).forEach(path -> {
-			// System.out.println("starting file parse");
-			processFile(path.toFile(), isClass);
-		});
+		if (designFile) {
+			Path designDir = Paths.get(designFolder);
+			System.out.println("Starting design file parse. Class - " + isClass);
 
+			Files.walk(designDir).forEach(path -> {
+				try {
+					processDesignFile(path.toFile(), isClass);
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+		}
+
+		else {
+			Path dir = Paths.get(folderName);
+
+			System.out.println("Starting code file parse. Class is " + isClass);
+			Files.walk(dir).forEach(path -> {
+				// System.out.println("starting file parse");
+				processFile(path.toFile(), isClass);
+			});
+		}
 		return true;
 	}
 
@@ -203,12 +209,12 @@ public class ImportService {
 	private String parseSmellsMethod(DesigniteCSVMethod methodFromDes) {
 		int cc = Integer.parseInt(methodFromDes.getCC());
 		int pc = Integer.parseInt(methodFromDes.getPC());
-		System.out.println("cc"+cc+" pc:"+pc);
-		
+		System.out.println("cc" + cc + " pc:" + pc);
+
 		String smells = "";
-		if (cc > 2 && cc <= 4)
+		if (cc > Constants.CCLow && cc <= Constants.CCHigh)
 			smells += "1,";
-		if (pc > 2 && pc < 4)
+		if (pc > Constants.PCLow && pc < Constants.PCHigh)
 			smells += "2,";
 
 		if (smells.length() > 1)
@@ -223,9 +229,8 @@ public class ImportService {
 
 		String smells = "";
 		Double multipleAbs = Double.parseDouble(methodFromDes.getLCOM());
-		System.out.println("abs"+multipleAbs);
-		if (multipleAbs > 0.43 && multipleAbs < 0.75)
-		{
+		System.out.println("abs" + multipleAbs);
+		if (multipleAbs > Constants.AbsLow && multipleAbs < Constants.AbsHigh) {
 			System.out.println("Found smell 3");
 			smells += "3,";
 		}

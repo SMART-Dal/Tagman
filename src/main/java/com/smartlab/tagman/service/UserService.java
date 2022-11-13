@@ -11,7 +11,7 @@ public interface UserService {
 
 	User findByUsername(String username);
 	
-	User findByBannerId(String bannerId);
+//	User findByBannerId(String bannerId);
 
 	List<User> findAllUsers();
 	

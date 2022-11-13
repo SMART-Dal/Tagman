@@ -140,12 +140,12 @@
 										</span>
 									</a>
 								</div>
-								<div th:if="${isClass == false}">
+								<div th:if="${isClass != true}">
 									<a class="nav-link " href="#">
 										<span class="nav-icon">
 											<span class="nav-link-text">LOC: </span>
 											<span class="nav-link-text" style="margin-left: 20px;"
-												th:text="${designEntry.LOC}">Annotate</span>
+												th:text="${designEntryMethod.LOC}">Annotate</span>
 
 											</svg>
 										</span>
@@ -168,19 +168,30 @@
 										</span>
 									</a>
 								</div>
-								<div th:if="${isClass == false}">
+								<div th:if="${isClass != true}">
 									<a class="nav-link " href="#">
 										<span class="nav-icon">
 											<span class="nav-link-text">CC: </span>
 											<span class="nav-link-text" style="margin-left: 20px;"
-												th:text="${designEntry.CC}">Annotate</span>
+												th:text="${designEntryMethod.CC}">Annotate</span>
 
 											</svg>
 										</span>
 									</a>
 								</div>
 
+							
+								<div th:if="${isClass != true}">
+									<a class="nav-link " href="#">
+										<span class="nav-icon">
+											<span class="nav-link-text">PC: </span>
+											<span class="nav-link-text" style="margin-left: 20px;"
+												th:text="${designEntryMethod.PC}">Annotate</span>
 
+											</svg>
+										</span>
+									</a>
+								</div>
 							</li>
 
 
@@ -197,7 +208,7 @@
 										</span>
 									</a>
 								</div>
-								<div th:if="${isClass == false}">
+								<div th:if="${isClass != true}">
 									<a class="nav-link " href="#">
 										<span class="nav-icon">
 											<span class="nav-link-text">PC: </span>
@@ -302,7 +313,7 @@
 										<span class="nav-icon">
 											<span class="nav-link-text">LCOM: </span>
 											<span class="nav-link-text" style="margin-left: 20px;"
-												th:text="${designEntry.LCOM}">Annotate</span>
+												th:text="${#numbers.formatDecimal(designEntry.LCOM, 0, 2)}">Annotate</span>
 
 											</svg>
 										</span>
@@ -425,9 +436,7 @@
 
 											<!--	<input type="hidden" name="sampleId" th:field="${id}" />-->
 											<div class="title" th:text="${filename}">spacy_demo.py</div>
-											<pre class="language-java"><code>
-													<div th:text="${sample}" style="overflow-y:scroll;"></div>
-												</code></pre>
+											<pre class="language-java"><code><div th:text="${sample}" style="overflow-y:scroll;"></div></code></pre>
 
 										</div>
 									</div>
@@ -465,7 +474,7 @@
 												<label th:text="${smell}"></label>
 												<br>
 											</th:block>
-										<!--	<br> <input type="checkbox" name="EmptyCB" id="EmptyCB"
+											<!--	<br> <input type="checkbox" name="EmptyCB" id="EmptyCB"
 												th:disabled="${isClass}"> <label for="replaceData">Empty
 												Catch Block</label>
 

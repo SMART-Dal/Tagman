@@ -52,7 +52,22 @@ public class RepositoryController {
 		return "redirect:/welcome";
 	}
 
-	@PostMapping("/import-csv")
+	@PostMapping("/import-csv-design")
+
+	public String uploadDesignFile(Model model, @RequestParam("file") MultipartFile file, RedirectAttributes attributes)
+			throws Exception {
+
+		if (file.isEmpty()) {
+			attributes.addFlashAttribute("message", "Please select a file to upload.");
+			return "redirect:/import-folder";
+		}
+
+		repositoryService.storeRepository(file,true);
+
+		return "redirect:/welcome";
+	}
+
+	@PostMapping("/import-csv-file")
 
 	public String uploadFile(Model model, @RequestParam("file") MultipartFile file, RedirectAttributes attributes)
 			throws Exception {
@@ -62,7 +77,7 @@ public class RepositoryController {
 			return "redirect:/import-folder";
 		}
 
-		repositoryService.storeRepository(file);
+		repositoryService.storeRepository(file,false);
 
 		return "redirect:/welcome";
 	}

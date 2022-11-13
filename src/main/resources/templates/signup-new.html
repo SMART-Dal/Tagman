@@ -114,13 +114,9 @@
 					<h2>Sign Up</h2>
 				</div>
 			</div>
-			<!--<div class="form-group row">
-				<label class="col-form-label col-4">Banner Id</label>
-				<div class="col-8">
-					<input type="text" th:field="*{bannerId}" class="form-control" placeholder="Banner ID" autofocus="true">
-			</div>-->
-			<input type="hidden" th:field="*{bannerId}" class="form-control" placeholder="Banner ID" autofocus="true"
-				value="B001111">
+
+			<!--			<input type="hidden" th:field="*{bannerId}" class="form-control" placeholder="Banner ID" autofocus="true"-->
+			<!--				value="B001111">-->
 			<div class="form-group row">
 				<label class="col-form-label col-4">Username</label>
 				<div class="col-8">
@@ -148,14 +144,47 @@
 
 				</div>
 			</div>
-
 			<div class="form-group row">
-				<div class="col-8 offset-4">
-					<p><label class="form-check-label"><input type="checkbox" required="required"> I  consent to the following <a
-								href="#" data-toggle="modal" data-target="#exampleModalLong">Policies and Terms of Use. </a></label></p>
-					<button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+				<label class="col-form-label col-4">Email ID (Optional)</label>
+				<div class="col-8">
+					<input type="email" th:field="*{email}" class="form-control" placeholder="Email ID"
+						autofocus="true">
 				</div>
 			</div>
+			<div class="form-group row">
+				<div class="col-8 offset-4">
+					
+					<p style="font-size: 14px;">In order to be considered for a random draw to win one of the four
+						$50
+						Amazon
+						Gift Cards and to be acknowledged, it is mandatory to include your email.</p>
+
+				
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-form-label col-4">Full Name (Optional)</label>
+				<div class="col-8">
+					<input th:field="*{fullName}" class="form-control" placeholder="Full Name"
+						autofocus="true">
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-8 offset-4">
+
+					<p style="font-size: 14px;"> Please write your full name if you would like us to acknowledge you as
+						a contributor of this dataset.</p>
+
+					<button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+				<p><label class="form-check-label"><input type="checkbox" required="required"> I consent to the
+							following <a href="#" data-toggle="modal" data-target="#exampleModalLong">Policies and Terms
+								of Use. </a></label></p>
+
+				</div>
+			
+			</div>
+
 		</form>
 		<div class="text-center">Already have an account? <a href="/login">Login here</a></div>
 	</div>
@@ -229,7 +258,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				
+
 				</div>
 			</div>
 		</div>

@@ -12,23 +12,29 @@ public class User {
 
     public String username;
     
-    public String bannerId;
+    public String email;
     
-    public int samplesAnswered;
-
-    /**
-	 * @return the bannerId
-	 */
-	public String getBannerId() {
-		return bannerId;
+    public String fullName;
+    
+    public String getFullName() {
+		return fullName;
 	}
 
-	/**
-	 * @param bannerId the bannerId to set
-	 */
-	public void setBannerId(String bannerId) {
-		this.bannerId = bannerId;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int samplesAnswered;
+
+ 
 
 	private String password;
     

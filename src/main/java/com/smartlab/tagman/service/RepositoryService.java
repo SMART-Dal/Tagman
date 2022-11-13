@@ -24,7 +24,7 @@ public class RepositoryService {
 	@Autowired
 	ImportService importService;
 
-	public void storeRepository(MultipartFile file) throws Exception {
+	public void storeRepository(MultipartFile file, boolean processDesignFile) throws Exception {
 
 		System.out.println("File:" + file.getOriginalFilename());
 		byte[] buffer = new byte[1024];
@@ -50,9 +50,9 @@ public class RepositoryService {
 		//importService.importFolder(TagmanUtil.getBaseFile() + File.separator + "codesplit_java_class2",
 		//		TagmanUtil.getBaseFile() + File.separator + "designite_out_java2", true);
 		 importService.importFolder(TagmanUtil.getBaseFile()+File.separator+Constants.codeSplitClass,
-				 TagmanUtil.getBaseFile() + File.separator + "designite_out_java", true);
+				 TagmanUtil.getBaseFile() + File.separator + "designite_out_java", true, processDesignFile);
 		 importService.importFolder(TagmanUtil.getBaseFile()+File.separator+Constants.codeSplitMethod,
-				 TagmanUtil.getBaseFile() + File.separator + "designite_out_java", false);
+				 TagmanUtil.getBaseFile() + File.separator + "designite_out_java", false, processDesignFile);
 
 		System.out.println("Ret Val:" + retVal);
 

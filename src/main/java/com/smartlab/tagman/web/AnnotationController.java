@@ -230,6 +230,8 @@ public class AnnotationController {
 		annotation.setSmellId(null);
 		annotation.setSmell(oneSmellDetected);
 		annotation.setCreationDateTime(new Date());
+//		model.addAttribute("isClass", .getIsClass());
+
 		Annotation annotationRet = annotationService.saveAnnotation(annotation);
 		// userService.addEntryForUser(userId, userService.getCountForUser(userId)+1);
 

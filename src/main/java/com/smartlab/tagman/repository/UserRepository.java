@@ -13,7 +13,7 @@ import com.smartlab.tagman.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByUsername(String username);
 
-	User findByBannerId(String bannerId);
+	//User findByBannerId(String bannerId);
 	
 	@Query("SELECT u FROM User u WHERE u.isAdmin = 0 AND  u.isInstructor = 0")
 	List<User> findAllStudents();
@@ -27,8 +27,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Query("SELECT u.samplesAnswered FROM User u WHERE u.id = userId")
 	int getCountForUser(@Param("userId") Long userId);
 
-	@Query("SELECT u FROM User u WHERE u.isAdmin = 0 AND u.isInstructor = 0 AND u.bannerId LIKE %:bannerId%")
-	List<User> findAppropriateUsers(@Param("bannerId") String bannerId);
+	@Query("SELECT u FROM User u WHERE u.isAdmin = 0 AND u.isInstructor = 0")
+	List<User> findAppropriateUsers(String bannerId);
 	
 	@javax.transaction.Transactional
 	@Modifying

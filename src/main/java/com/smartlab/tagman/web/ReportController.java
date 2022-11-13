@@ -78,9 +78,10 @@ public class ReportController {
 
 	private void writeToFile(String bannerId, FileWriter myWriter) throws IOException {
 
-		User user = userService.findByBannerId(bannerId);
-		myWriter.write("Student Banner Id : " + user.getBannerId() + "\n");
+		User user = new User();
+		// myWriter.write("Student Banner Id : " + user.getBannerId() + "\n");
 		myWriter.write("Attempts made correctly : " + user.getSamplesAnswered() + "\n");
-		myWriter.write("Total attempts made: " + annotationService.getAllAnnotationsForUser(user.getId()).size() + "\n");
+		myWriter.write(
+				"Total attempts made: " + annotationService.getAllAnnotationsForUser(user.getId()).size() + "\n");
 	}
 }

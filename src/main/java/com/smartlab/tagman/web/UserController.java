@@ -129,7 +129,7 @@ public class UserController {
 		}
 		Annotation annotation = annotationService.getAnnotationById(annotatedUser.getAnnotationId());
 		Sample sample = annotationService.getSampleById(annotation.getSampleId());
-		model.addAttribute("bannerId", users.get(0).getBannerId());
+		//model.addAttribute("bannerId", users.get(0).getBannerId());
 		// System.out.println("Added BannerId +"+users.get(0).getBannerId());
 		List<String> files = TagmanUtil.readFile(sample.getPathToFile());
 		StringBuilder sb = new StringBuilder();

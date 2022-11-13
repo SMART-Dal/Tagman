@@ -28,7 +28,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "Username too short. Minimum length is 6.");
         }
         if (userService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "User already exists. Please choose another username. ");
+            errors.reject("username", "User already exists. Please choose another username. ");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
