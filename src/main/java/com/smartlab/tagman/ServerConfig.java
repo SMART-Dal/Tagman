@@ -25,7 +25,7 @@ public class ServerConfig {
         context.addConstraint(securityConstraint);
       }
     };
-   tomcat.addAdditionalTomcatConnectors(getHttpConnector());
+  // tomcat.addAdditionalTomcatConnectors(getHttpConnector());
     return tomcat;
   }
 
