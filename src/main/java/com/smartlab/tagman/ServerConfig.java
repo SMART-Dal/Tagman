@@ -17,12 +17,12 @@ public class ServerConfig {
     TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
       @Override
       protected void postProcessContext(Context context) {
-         SecurityConstraint securityConstraint = new SecurityConstraint();
-        securityConstraint.setUserConstraint("CONFIDENTIAL");
-         SecurityCollection collection = new SecurityCollection();
-        collection.addPattern("/*");
-        securityConstraint.addCollection(collection);
-        context.addConstraint(securityConstraint);
+//         SecurityConstraint securityConstraint = new SecurityConstraint();
+//        securityConstraint.setUserConstraint("CONFIDENTIAL");
+//         SecurityCollection collection = new SecurityCollection();
+//        collection.addPattern("/*");
+//        securityConstraint.addCollection(collection);
+//        context.addConstraint(securityConstraint);
       }
     };
   // tomcat.addAdditionalTomcatConnectors(getHttpConnector());
