@@ -2,6 +2,8 @@ package com.smartlab.tagman;
 
 
 
+import java.util.Collections;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.PortMapperImpl;
+import org.springframework.security.web.PortResolverImpl;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 @Configuration
 @EnableWebSecurity
@@ -32,7 +37,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	PortMapperImpl portMapper = new PortMapperImpl();
+    	portMapper.setPortMappings(Collections.singletonMap("443","443"));
+    	PortResolverImpl portResolver = new PortResolverImpl();
+    	portResolver.setPortMapper(portMapper);
+    	LoginUrlAuthenticationEntryPoint entryPoint = new LoginUrlAuthenticationEntryPoint(
+    			"/login");
+    	entryPoint.setPortMapper(portMapper);
+    	entryPoint.setPortResolver(portResolver);
+    	
         http
+        .exceptionHandling()
+		.authenticationEntryPoint(entryPoint)
+		.and()
         .requiresChannel(chanel -> chanel.anyRequest().requiresSecure())
             .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/registration").permitAll()
