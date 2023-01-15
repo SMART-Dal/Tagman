@@ -58,6 +58,11 @@ public class AnnotationService {
 
 	public AnnotationReturnModel getAnnotationForUser(String username, String smellId, boolean updateAnnotation,
 			Long sampleId) {
+		return this.getAnnotationForUser(username, smellId, updateAnnotation, sampleId, false);
+	}
+
+	public AnnotationReturnModel getAnnotationForUser(String username, String smellId, boolean updateAnnotation,
+			Long sampleId, boolean forceMethodSelect) {
 		String userId = userRepository.findByUsername(username).getId().toString();
 		hibernateUtil.init();
 		SessionFactory sessionFactory = TagmanUtil.getSessionFactory();
@@ -65,12 +70,12 @@ public class AnnotationService {
 		Transaction tx = session.beginTransaction();
 		AnnotationReturnModel returnModel = new AnnotationReturnModel();
 		NativeQuery queryForSampleSize = session.createSQLQuery("select * from annotation where user_id = " + userId);
-
+		System.out.println("Query for sample size" + queryForSampleSize);
 		List resultsForSample = queryForSampleSize.list();
 		returnModel.setSize(resultsForSample.size());
 		Random random = new Random();
 		boolean getClass = true;
-		if (random.nextInt(10) < 7) {
+		if (random.nextInt(10) < 7 && !forceMethodSelect) {
 			getClass = false;
 		}
 		if (updateAnnotation) {
@@ -118,17 +123,22 @@ public class AnnotationService {
 			queryForSample = session.createSQLQuery(
 					"select * from sample WHERE is_class = " + getClass + "  AND has_smell = true LIMIT 10");
 		}
+		System.out.println("queryForSample:" + queryForSample);
 		queryForSample.addEntity(Sample.class);
 		results = queryForSample.list();
 		System.out.println("size" + results.size());
 		if (results.size() == 0) {
-			queryForSample = session.createSQLQuery(
-					"select * from sample where id NOT IN  (" + sampleStr + ") AND sample_constraints < "
-							+ Constants.sampleConstraintValue + " AND is_class = " + getClass + " AND has_smell = true LIMIT 10");
+			queryForSample = session.createSQLQuery("select * from sample where id NOT IN  (" + sampleStr
+					+ ") AND sample_constraints < " + Constants.sampleConstraintValue + " AND is_class = " + getClass
+					+ " AND has_smell = true LIMIT 10");
 
 		}
 		queryForSample.addEntity(Sample.class);
+		System.out.println("queryForSample:" + queryForSample);
+
 		results = queryForSample.list();
+		if(results.size() == 0)
+			return this.getAnnotationForUser(username, smellId, updateAnnotation, sampleId, true);
 		Random rand = new Random();
 		Sample randomResult = (Sample) results.get(rand.nextInt(results.size()));
 
