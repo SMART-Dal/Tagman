@@ -9,12 +9,7 @@ Tagman is a web platform to create a manually annotated dataset of smells. The p
      * [Python Libraries](#python-libraries)
   * [Setup](#setup)
 * [Usage](#usage)
-  * [Tasks](#tasks)
-    * [Operations](#operations)
-    * [Conditions](#conditions)
-  * [Representations](#representations)
-* [Roadmap](#roadmap)
-* [Appendix](#appendix)
+ 
 
 ## Getting Started
 In order to run Tagman, the following dependencies are necessary.
