@@ -50,7 +50,7 @@ server.ssl.key-store-type=pkcs12
 The server contains a self contained embedded tomcat server. Hence, the jar does not need to be deployed to a server. To start Tagman, run the following command:
 
 ``` console
-Java -jar tagman-1.0.jar
+java -jar tagman-1.0.jar
 ```
 
 
